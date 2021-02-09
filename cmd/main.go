@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 
+	"github.com/Shawnlu25/chev/internal/event"
 	"github.com/Shawnlu25/chev/internal/keep"
 )
 
@@ -19,13 +20,19 @@ func init() {
 
 func main() {
 	flag.Parse()
-	_, err := keep.ParseExportedNotesFromDir(path)
+	notes, err := keep.ParseExportedNotesFromDir(path)
 
 	if err != nil {
 		panic(fmt.Errorf("Error parsing keep export: %v", err))
 	}
 
-	//for _, note := range notes {
-	//fmt.Println(note)
-	//}
+	events, err := event.ParseEventsFromKeepExportedNotes(notes)
+
+	if err != nil {
+		panic(fmt.Errorf("Error parsing events: %v", err))
+	}
+
+	for _, event := range events {
+		fmt.Println(event)
+	}
 }

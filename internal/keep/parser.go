@@ -30,8 +30,8 @@ func ParseExportedNotesFromDir(dir string) ([]ExportedNote, error) {
 	}
 
 	notes := []ExportedNote{}
-	for i := 0; i < len(matchedFilepaths); i++ {
-		note, err := ParseExportedNoteInJSON(matchedFilepaths[i])
+	for _, path := range matchedFilepaths {
+		note, err := ParseExportedNoteInJSON(path)
 		if err != nil {
 			return nil, err
 		}

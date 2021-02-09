@@ -4,5 +4,5 @@ go 1.14
 
 require (
 	github.com/go-echarts/go-echarts/v2 v2.2.3 // indirect
-	github.com/gobwas/glob v0.2.3 // indirect
+	github.com/gobwas/glob v0.2.3
 )
