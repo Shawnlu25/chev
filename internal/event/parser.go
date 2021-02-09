@@ -65,6 +65,9 @@ func parseEventsFromKeepExportedNote(note keep.ExportedNote) ([]Event, error) {
 				log.Println(err)
 				continue
 			}
+			if endTime.Before(event.StartTime) {
+				endTime = endTime.Add(time.Hour * 24)
+			}
 			event.Duration = endTime.Sub(event.StartTime)
 			event.Description = line[9:]
 		} else {
